@@ -1,26 +1,38 @@
 @CHARSET "UTF-8";
 /* header1.css */
-#header1_inner {
-    width: 1100px;
-    height: 100%;
+#top {
+	width: 100%;
+    min-width: 1100px;
+    height: 2em;
     margin: 0 auto;
+	position: relative;
+	top: 0px;
+	background-color: #D65A6F;
+}
+#signupLogin {
+	width: 1100px;
+	top: 0px;  
+	margin: 0 auto;
+}
+#signupLogin>ul {
+	float: right;
+	margin-top: 0.5em;
+}
+#signupLogin>ul>li{
+    font-weight: bold;
+}
+#signupLogin>ul>li:nth-child(1) span{
+    font-weight: normal;
 }
 
-#header1_right_notLogin{ /* v3 */
-    float: right;
-}
-#header1_right_Login{ /* v3 */
-    float: right;
-}
-#header1_inner a:link{
+#signupLogin a:link{
     color: black;
     text-decoration: none;
 }
-#header1_inner a:visited{
+#signupLogin a:visited{
     color: black;
     text-decoration: none;
 }
-#header1_inner a:hover{
-    color: #9D0D0C;
+#signupLogin a:hover{
     text-decoration: underline;
 }

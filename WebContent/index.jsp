@@ -4,19 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="shortcut icon" href="images/logo_icon.ico" type="image/x-icon" />
-<link rel="icon" href="images/logo_icon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="images/icons.ico" type="image/x-icon" />
+<link rel="icon" href="images/icons.png" type="image/png" />
 <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.css" />
 <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/header1.css">
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/index_main.css">
 <link rel="stylesheet" href="css/footer.css">
-<script type="text/javascript" src="js/nav.js"></script>
-<script type="text/javascript" src="js/ad.js"></script>
+<script type="text/javascript" src="js/header.js"></script>
 
 <!-- v3:修改title -->
-<title>首页|银心银饰</title> 
+<title>首页 | Jewelry</title> 
 <%  /* v3: 动态显示当前用户名 */
 	String cid = null;
 	if(session.getAttribute("id") != null)
@@ -59,32 +58,10 @@
     body {
     	margin: 0px;
         padding: 0px;  
-        font-size: 16px;
-        font-family: 方正隶书简体, 隶书, 微软雅黑, 楷体;
-        background-color: #F5F5F5;
-        background-image: url('images/logo.png');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: 10%;
-        background-position: 100% 66%;
+        font-size: 0.8em;
+        font-family: "Times New Roman",Georgia,Serif;
+        background-color: #F8F8F8;
     }   
-    #header1_outer {
-	    width: 100%;
-	    min-width: 1100px;
-	    height: 18px;
-		position: relative;
-		background-color: #CACACA;
-		/* border: 1px solid black;  */
-	}
-	     
-	#header {
-		width: 1100px;
-		height: 168px;
-		margin: 0 auto;		
-		position: relative;
-		padding: 0px;		
-		/* border: solid 1px black; */
-	} 
 	
 	#main {
 		width: 1100px;
@@ -111,72 +88,52 @@
 </style>
 </head>
 <body>
-	<div id="header1_outer"> <!-- v3 -->
-		<div id="header1_inner">
-			<a href="admin_login.jsp">管理员入口</a> 
-			<div id="header1_right_notLogin" <%=notLogin %>>
-				<a href="login.jsp">登录</a> | <a href="register.jsp">注册</a>
-			</div>
-			<div id="header1_right_Login" <%=Login %>>
-				<span><%=userName %></span> <a href="update_customer.jsp">用户中心</a>
-			</div>
+	<div id="top">
+		<div id="signupLogin"> 
+			<ul>
+				<li <%=notLogin %>>
+					<span>立即注册以访问专有内容</span>&nbsp;&nbsp;&nbsp;
+					<a href="register.jsp">注册</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="login.jsp">登录</a> 
+				</li>
+				<li <%=Login %>>
+					<span><%=userName %></span> <a href="update_customer.jsp">用户中心</a>
+				</li>
+			</ul>
 		</div>
 	</div>
-	
 	<div id="header">
-		<div id="logo">
-			<a href="index.jsp"><img alt="银心" src="images/logo.png" width="98px" height="150px"></a>
-		</div>
-		<!-- end of logo -->
-		<div id="slogon">
-			<p>想用整个<b>银</b>河</p>
-			<p>            换你一颗真<b>心</b></p>
-		</div>
-		<!-- end of slogon -->		
-		<div id="nav">
-			<a href="index.jsp" id="home">
-				<i class="fa fa-home navIcon"></i>
-				<p>首页</p>
-			</a>
-							
-			<a href="main.jsp" id="product" 
-				onmouseenter="javascript:delay_appear()" 
-				onmouseover="javascript:delay_appear()" 
-				onmouseleave="javascript:delay_disappear()">
-				<i class="fa fa-search navIcon"></i>
-				<p>产品</p>
-			</a>			
-			<div class="subnav">
-				<ul id="product_class"
-					onmouseenter="javascript:appearNav(); product_class.mouseOn=true" 
-					onmouseleave="javascript:delay_disappear(); product_class.mouseOn=false"
-					onmouseover="javascript:appearNav(); product_class.mouseOn=true"
-					onmouseout="javascript:delay_disappear(); product_class.mouseOn=false">
-					<li><a href="ring.jsp">戒指</a></li> <!-- v3 -->
-					<li><a href="earring.jsp">耳环</a></li> <!-- v3 -->
-					<li><a href="bracelent.jsp">手镯</a></li> <!-- v3 -->
-					<li><a href="necklace.jsp">项链</a></li> <!-- v3 -->
-				</ul>
+		<div id="container">
+			<div id="logo">
+				<a title="Jewelry" href="index.jsp"><img src="images/logo.png"></a>
 			</div>
-			<!-- end of subnav -->
-			
-			<a href="order_list.jsp" id="order"> <!-- v3 -->
-				<i class="fa fa-file-text-o navIcon"></i>
-				<p>订单</p>
-			</a>
+			<!-- end of logo -->
+			<ul id="menu">
+				<li id="home"><a href="index.jsp">首页</a></li>				
+				<li id="product" ><a href="main.jsp" >产品</a></li>							
+				<li id="order"><a href="order_list.jsp">订单</a></li>
+			</ul>
+			<!-- end of menu -->		
 		</div>
-		<!-- end of nav -->		
+		<!-- end of container -->
+		<div class="subnav">
+			<ul>
+				<li><a href="ring.jsp">戒指</a></li> 
+				<li><a href="earring.jsp">耳环</a></li> 
+				<li><a href="bracelent.jsp">手镯</a></li>
+				<li><a href="necklace.jsp">项链</a></li> 
+			</ul>
+		</div>
+		<!-- end of subnav -->
 	</div>
 	<!-- end of header -->
-	
 	<div id="main">
 		<div id="ad_screen">
 			<div id="ad_list">
 				<ul>
-					<li><img id="ad_img" src="https://cl.ly/0f110k0O2L0G/download/E002.jpg" width=350px height=350px></li>
-					<li><img id="ad_img" src="https://cl.ly/1T390V1u362B/download/B002.jpg" width=350px height=350px>></li>
-					<li><img id="ad_img" src="https://cl.ly/1z3h2D1C0k01/download/R009.jpg" width=350px height=350px>></li>
-					<li><img id="ad_img" src="https://cl.ly/173A350b0J1i/download/N007.jpg" width=350px height=350px>></li>
+					<li><img id="ad_img" src="" width=350px height=350px></li>
+					<li><img id="ad_img" src="" width=350px height=350px></li>
+					<li><img id="ad_img" src="" width=350px height=350px></li>
+					<li><img id="ad_img" src="" width=350px height=350px></li>
 				</ul>
 			</div>
 		</div> 
@@ -199,8 +156,8 @@
 				<hr/>
 				<ul>
 					<li><b>电话：</b>12345678909</li>
-					<li><b>官方微博：</b>http://weibo.com/yinxinGalary</li>
-					<li><b>微信公众号：</b>yinxinGalary</li>
+					<li><b>官方微博：</b>http://weibo.com/Jewelry</li>
+					<li><b>微信公众号：</b>loveJewelry</li>
 				</ul>
 			</div>
 		</div>
