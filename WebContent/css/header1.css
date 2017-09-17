@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+/* header1.css */
+#header1_inner {
+    width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#header1_right_notLogin{ /* v3 */
+    float: right;
+}
+#header1_right_Login{ /* v3 */
+    float: right;
+}
+#header1_inner a:link{
+    color: black;
+    text-decoration: none;
+}
+#header1_inner a:visited{
+    color: black;
+    text-decoration: none;
+}
+#header1_inner a:hover{
+    color: #9D0D0C;
+    text-decoration: underline;
+}

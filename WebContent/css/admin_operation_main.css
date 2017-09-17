@@ -1,0 +1,125 @@
+@CHARSET "UTF-8";
+#main>#cols>#products {
+	height: 200px;
+	width: 400px;
+	position: relative;
+	padding: 30px;
+	top: 100px;
+	background-color: white;
+  	filter: alpha(opacity=90); /* 用于兼容IE低版本 */
+  	-webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 
+  						0 1px 4px rgba(0, 0, 0, 0.3), 
+  						0 0 60px rgba(0, 0, 0, 0.1) inset;
+  	-moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 
+  					 0 1px 4px rgba(0, 0, 0, 0.3), 
+  					 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  	box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 
+  				0 1px 4px rgba(0, 0, 0, 0.3), 
+ 				0 0 40px rgba(0, 0, 0, 0.1) inset;
+	}
+	#main>#cols>#block1 {
+	height: 150px;
+	width: 180px;
+	position: relative;
+	top: -300px;
+	left: 400px;
+	background-color: #9D0D0C;
+	padding: 30px;
+  	filter: alpha(opacity=90); /* 用于兼容IE低版本 */
+  	-webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 
+  						0 1px 4px rgba(0, 0, 0, 0.3), 
+  						0 0 60px rgba(0, 0, 0, 0.1) inset;
+  	-moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 
+  					 0 1px 4px rgba(0, 0, 0, 0.3), 
+  					 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  	box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 
+  				0 1px 4px rgba(0, 0, 0, 0.3), 
+  				0 0 40px rgba(0, 0, 0, 0.1) inset,
+  				0 -15px 10px -10px rgba(0, 0, 0, 0.5), 
+  				0 -1px 4px rgba(0, 0, 0, 0.3), 
+  				0 0 40px rgba(0, 0, 0, 0.1) inset;
+	}
+	#main>#cols>#orders {
+		height: 200px;
+		width: 400px;
+		position: relative;
+		padding: 30px;
+		top: -400px;
+		left: 550px;
+		background-color: white;
+	  	filter: alpha(opacity=90); /* 用于兼容IE低版本 */
+	  	-webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 
+	  						0 1px 4px rgba(0, 0, 0, 0.3), 
+	  						0 0 60px rgba(0, 0, 0, 0.1) inset;
+	  	-moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 
+	  					 0 1px 4px rgba(0, 0, 0, 0.3), 
+	  					 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	  	box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 
+	  				0 1px 4px rgba(0, 0, 0, 0.3), 
+	 				0 0 40px rgba(0, 0, 0, 0.1) inset;
+	}
+	#main>#cols>#block2 {
+	height: 50px;
+	width: 50px;
+	position: relative;
+	top: -440px;
+	left: 970px;
+	background-color: #9D0D0C;
+	padding: 30px;
+	border-radius: 100px;
+  	filter: alpha(opacity=90); /* 用于兼容IE低版本 */
+  	-webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 
+  						0 1px 4px rgba(0, 0, 0, 0.3), 
+  						0 0 60px rgba(0, 0, 0, 0.1) inset;
+  	-moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 
+  					 0 1px 4px rgba(0, 0, 0, 0.3), 
+  					 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  	box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 
+  				0 1px 4px rgba(0, 0, 0, 0.3), 
+  				0 0 40px rgba(0, 0, 0, 0.1) inset;
+	}
+	#main>#cols>#block3 {
+		height: 40px;
+		width: 40px;
+		position: relative;
+		border-radius: 50px;
+		top: -850px;
+		left: 100px;
+		background-color: #BD0600;
+	  	filter: alpha(opacity=90); /* 用于兼容IE低版本 */
+	  	-webkit-box-shadow: 0 13px 13px -10px rgba(0, 0, 0, 0.4), 
+	  						0 1px 4px rgba(0, 0, 0, 0.3), 
+	 						0 0 40px rgba(0, 0, 0, 0.1) inset;
+	  	-moz-box-shadow: 0 13px 13px -10px rgba(0, 0, 0, 0.4), 
+	  					 0 1px 4px rgba(0, 0, 0, 0.3), 
+	 					 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	  	box-shadow: 0 13px 13px -10px rgba(0, 0, 0, 0.4), 
+	  				0 1px 4px rgba(0, 0, 0, 0.3), 
+	 				0 0 40px rgba(0, 0, 0, 0.1) inset;
+	}
+	#main {
+		text-align: center;
+	}
+	button {
+		width: 80px;
+		background-color: #BD0600;
+		opacity: 0.7;
+		-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5), 
+  							0px 2px 2px rgba(0, 0, 0, 0.3), 
+  							0px -1px 2px rgba(0, 0, 0, 0.5),
+  							0px -2px 2px rgba(0, 0, 0, 0.3);
+  		-moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 
+  					 	 0px 2px 2px rgba(0, 0, 0, 0.1), 
+  					     0px -1px 2px rgba(0, 0, 0, 0.3),
+  					 	 0px -2px 2px rgba(0, 0, 0, 0.1);
+  		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 
+  					0px 2px 2px rgba(0, 0, 0, 0.1), 
+  					0px -1px 2px rgba(0, 0, 0, 0.3),
+  					0px -2px 2px rgba(0, 0, 0, 0.1);
+  		border: 0px;
+  		padding: 5px 10px;
+  		font-family: 方正隶书简体, 隶书, 微软雅黑, 楷体;
+  		font-size: 1.1rem;
+  		margin-right: 10px;
+  		color: white;
+	}
