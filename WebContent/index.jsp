@@ -6,12 +6,13 @@
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="images/icons.ico" type="image/x-icon" />
 <link rel="icon" href="images/icons.png" type="image/png" />
+<link rel="stylesheet" href="css/normalize.css" type="text/css" charset="utf-8">
 <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.css" />
 <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="css/header1.css">
-<link rel="stylesheet" href="css/header.css">
-<link rel="stylesheet" href="css/index_main.css">
-<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/header1.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="css/header.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="css/index_main.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="css/footer.css" type="text/css" charset="utf-8">
 <script type="text/javascript" src="js/header.js"></script>
 
 <!-- v3:修改title -->
@@ -54,37 +55,138 @@
 		}
 	} 
 %>
-<style>
-    body {
-    	margin: 0px;
-        padding: 0px;  
-        font-size: 0.8em;
-        font-family: "Times New Roman",Georgia,Serif;
-        background-color: #F8F8F8;
-    }   
-	
+<style> 
 	#main {
 		width: 1100px;
-		height: 720px;
 		/* border: solid 1px black; */
 		margin: 0 auto;
 		position: relative;
 		padding: 0px;
-		margin-top: 10px;
+		margin-top: 130px;
 	}
-	#footer_outer {
-		width: 100%;
-		min-width: 1100px;
-	    height: 160px;
-		background-color: #CACACA;
+	
+	/* 幻灯片上方的文字标题 */
+	div#sliderIndex{
+		width: 1100px;
+		flex: 1;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	div#sliderIndex .sliderName {
+		height: 40px;
+		text-align: center;
+		line-height: 40px;
+		float: left;
+		flex: 1 1 auto;
+		background: url('images/sliderBackground.png') #EEE left repeat-y;
+		background-size: 0%;
+	}
+	div#sliderIndex .sliderName:nth-child(-n+3) {
+		margin-right: 2px;
+	}
+	div#sliderIndex div.active {
+		animation: sliderIndexColor 5s linear; 
+		-webkit-animation: sliderIndexColor 5s linear; /* Safari, Chrome */
+	}
+	@keyframes sliderIndexColor {
+		0% {background-size: 0%;}
+		20% {background-size: 20%;}
+		40% {background-size: 40%;}
+		60% {background-size: 60%;}
+		80% {background-size: 80%;}
+		100% {background-size: 100%;}
+	}
+	div#sliderIndex div.actived {
 		background-size: 100%;
-		margin-top: 10px;
-		font-size: 0.7rem;
-		color: #000000;
+	}
+	/* 幻灯片 */
+	#sliderMain { /* 备用外层div，用于之后添加文字 */
+		width: 1100px;
+		height: 300px;
+		background: white;
+		border-bottom: 1px solid rgba(50, 50, 50, 0.2);
+	}
+	#sliderImg {
+		/* 设置为单幅图片的宽高 */
+		width: 300px;
+		height: 300px;
+		position: relative;
+		/* 只显示一幅图片 */
+		overflow: hidden;
+		left: 100px;
+	}
+	#wrapper {
+		position: absolute;
+		/* 设置为所有图片的宽度之和，容纳所有图片 */
+		width: 1200px;
+		height: 300px;
+		top: 0px;
+		background: white;
+	}
+	#wrapper>img{
+		float: left;
+		height: 300px;
+		width: 300px;
+	}
+	#sliderContent {
+		float: right;
+		margin-right: 200px;
+		margin-top: 100px;
+		text-align: center;
+	}
+	#sliderContent>div:nth-child(n+2) {
+		display: none;
+	}
+	.sliderHeader{
+		font-size: 2em;
 	}
 	
-	/* 本页面专用CSS */
-	
+	/* 照片墙 */
+	#photoWall{
+		height: 990px;
+		width: 1100px;
+		display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6 */
+		display: -moz-box;  /* OLD - Firefox 19- H5不用考虑 */
+		display: -mz-flexbox; /* TWEENER IE 10 */
+		display: -webkit-flex; /* Safari */
+		display: flex;
+		flex-flow: column wrap;
+		justify-content: flex-start;
+		align-items: flex-start;
+		margin-top: 10px;
+		margin-right: -20px;
+	}
+	div.photo {
+		width: 540px;
+		margin-right: 20px;
+	}
+
+	.photo img{
+		max-width: 540px;
+	}
+	span.photo.title {
+		display: inline-block;
+		width: 100%;
+		max-width: 540px;
+		height: 40px;
+		line-height: 40px;
+		background: white;
+		text-align: center;
+		font-size: 1.5em;
+	}
+	span.photo.description {
+		display: inline-block;
+		width: 100%;
+		max-width: 540px;
+		height: 20px;
+		line-height: 20px;
+		background: white;
+		text-align: center;
+		font-size: 0.5em;
+		color: #808080;
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+	}
 </style>
 </head>
 <body>
@@ -127,48 +229,65 @@
 	</div>
 	<!-- end of header -->
 	<div id="main">
-		<div id="ad_screen">
-			<div id="ad_list">
-				<ul>
-					<li><img id="ad_img" src="" width=350px height=350px></li>
-					<li><img id="ad_img" src="" width=350px height=350px></li>
-					<li><img id="ad_img" src="" width=350px height=350px></li>
-					<li><img id="ad_img" src="" width=350px height=350px></li>
-				</ul>
+		<!-- 配合幻灯片的切换而切换的标题 -->
+		<div id="sliderIndex">
+			<div class="sliderName active">戒指</div>
+			<div class="sliderName">耳环</div>
+			<div class="sliderName">手链</div>
+			<div class="sliderName">项链</div>
+		</div>
+		<div id="sliderMain"> <!-- 幻灯片内容区 -->
+			<div id="sliderContent"> <!-- 幻灯片文本介绍 -->
+				<div><span class="sliderHeader">戒指</span><br><br>
+					 <span class="sliderText">经典戒指样式与流行的玫瑰金色碰撞</span></div>
+			    <div><span class="sliderHeader">耳环</span><br><br>
+					 <span class="sliderText">粉色珍珠彰显年轻本色</span></div>
+			    <div><span class="sliderHeader">手链</span><br><br>
+					 <span class="sliderText">与众不同的金属质感</span></div>
+				<div><span class="sliderHeader">项链</span><br><br>
+					 <span class="sliderText">共享欢乐与泪水</span></div>
 			</div>
-		</div> 
-		<!-- end of ad -->
-		<div id=cols>
-			<div id="new_message">
-				<span> 最新资讯 </span>
-				<hr/>
-				<ul>
-					<li><p><span>2016/12/10：圣诞节狂欢满赠季，圣诞礼物选它就对了</span>
-					       <span>！满2080送新款价格520元手镯!</span></p></li>
-					<li><p><span>2016/12/01：双十二特惠场3折起</span>
-					       <span>！优惠券满1100减20，打折商品限量销售，先到先得！</span></p></li>
-					<li><p><span>2016/11/05：双十一限量秒杀</span>
-					       <span>！即日起至11月11日，整点限量秒杀，价格低至999元！</span></p></li>
-				</ul>
+			<div id="sliderImg"> <!-- 幻灯片图片 -->
+				<div id="wrapper">
+					<img src="images/ring.jpg">
+					<img src="images/earring.jpg">
+					<img src="images/bracelet.jpg">
+					<img src="images/necklace.jpg">
+				</div>
 			</div>
-			<div id="about_me">
-				<span> 关于我们 </span>
-				<hr/>
-				<ul>
-					<li><b>电话：</b>12345678909</li>
-					<li><b>官方微博：</b>http://weibo.com/Jewelry</li>
-					<li><b>微信公众号：</b>loveJewelry</li>
-				</ul>
+		</div>
+		<!-- end of slider --> 
+		<div id="photoWall">
+			<div class="photo">
+				<img src="images/photoWall1.jpg"/><br>
+				<span class="photo title">乐观生活</span>
+				<span class="photo description">心态决定想法，想法决定做法，做法决定结果。</span>
 			</div>
+			<div class="photo">
+				<img src="images/photoWall4.jpg"/>
+				<span class="photo title">善待自己</span>
+				<span class="photo description">一生中，总会有一个人让你笑得最甜，也总会有一个人让你痛得最深。</span>
+			</div>
+			<div class="photo">
+				<img src="images/photoWall3.jpg"/><br>
+				<span class="photo title">宽容他人</span>
+				<span class="photo description">宽容是送给他人的最好礼物。</span>
+			</div>
+			<div class="photo">
+				<img src="images/photoWall2.jpg"/>
+				<span class="photo title">等待惊喜</span>
+				<span class="photo description">一无所知的世界，走下去，才有惊喜。</span>
+			</div>
+			<!-- end of photoWall --> 
 		</div>
 	</div>
 	<!-- end of main -->
-	
+
+	<div style="background-color: #D65A6F; height: 3px; width: 100%;"></div>
 	<div id="footer_outer">
 		<div id="footer_inner">
-			<p>版权所有 &copy 移动Web应用设计第100小组</p>
-			<p>组长：谢梓莹</p>
-			<p>组员：蔡洁莹、陈晓琪</p>
+			<p>版权所有 &copy; SYSU-移动Web应用设计第100小组</p>
+			<p>移动信息工程14级：谢梓莹、蔡洁莹、陈晓琪</p>
 			<p>建议使用IE9.0及以上、Firefox、Google Chrome、360浏览器极速模式或其它兼容浏览器访问本网站</p>
 		</div>
 	</div>

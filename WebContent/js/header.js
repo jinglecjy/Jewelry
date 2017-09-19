@@ -1,94 +1,6 @@
 window.onload = function(){
-	bind();
-	var adScreen = document.getElementById("ad_screen");
-	var adList = adScreen.getElementsByTagName("ul")[0];
-	var allImg = adScreen.getElementsByTagName("img");
-	var timer = null;
-	var playTimer = null;
-	var index = i = 0;
-	var increOrder = true;
-	var allTmp = [];
-	var allButton = null;
-	// 生成数字按钮
-	for(i=0; i<allImg.length; i++) allTmp.push("<li>"+(i+1)+"</li>");
-	// 将数字按钮插入到html代码中
-	var adCount = document.createElement("ul");
-	adCount.className = "count";
-	adCount.innerHTML = allTmp.join("");
-	adScreen.appendChild(adCount);
-	allButton = adScreen.getElementsByTagName("ul")[1].getElementsByTagName("li"); 
-	
-  	// 初始化幻灯片
-	cutover(); 
-	
- 	// 按钮点击切换
-	for(i=0; i<allButton.length; i++){
-		allButton[i].index = i;
-		allButton[i].onclick = function (){
-			index = this.index;
-			stop();
-			cutover();
-		}
-	} 
-
- 	function next(){
-		increOrder? index++:index--;
-		if(index < 0){
-			index = 0;
-			increOrder = true;
-		}
-		if(index > allButton.length-1){
-			index = allButton.length-1;
-			increOrder = false;
-		}
-		console.log("next");
-		cutover();
-	}
- 	
- 	function cutover(){
-		for(i=0; i<allButton.length; i++) allButton[i].className = "";
-		allButton[index].className = "current"; // 标记当前选中的图片 
-		console.log("cutover");
-		startMove(-(index*allImg[0].offsetHeight));
-		playTimer = setTimeout(play, 6000); // 每6秒切换一次图片
-	}
-	
- 	playTimer = setTimeout(play, 6000); // 每6秒切换一次图片
-	
-	// 出现图像抖动无法切换
- 	/* // 鼠标移入展示区自动停止播放
-	adScreen.onmouseover = function(){
-		if(timer == null) clearInterval(playTimer);
-		console.log("mouseover");
-	}
-	// 鼠标离开展示区自动播放
-	adScreen.onmouseout = function(){
-		playTimer = setInterval(function(){next();}, 3000); 
-		console.log("mouseout");
-	}  */
-	function startMove(imgTarget){
-		clearInterval(playTimer);
-		timer = setInterval(function(){
-			doMove(imgTarget);
-		}, 20);
-		
-		console.log("startmove");
-	}
-	function doMove(imgTarget){
-		var imgSpeed = (imgTarget - adList.offsetTop)/2;
-		imgSpeed = imgSpeed>0 ? Math.ceil(imgSpeed):Math.floor(imgSpeed);
-		
-		adList.offsetTop == imgTarget? clearInterval(timer) :
-							adList.style.top = adList.offsetTop + imgSpeed + "px";
-		console.log("doMove"+timer);
-	}  
-	function play(){
-		next();
-		playTimer = setTimeout(play, 6000);
-	}
-	function stop(){
-		clearTimeout(playTimer);
-	}
+	bind(); // 导航栏事件绑定
+	sliderChange(); // 开始运行幻灯片
 }  
 
 /* v1: 导航栏hover时间绑定 */
@@ -96,7 +8,7 @@ var isHover = false;
 function appearSubNav(){
 	var e1 = document.getElementsByClassName('subnav')[0];
 	e1.style.display="flex"; 
-	var e = event || arguments[0];
+	var e = window.event || arguments[0];
 	if(e.currentTarget.id != "product") isHover = true;
 }
 function delay_disappear(){ // 子菜单延时5秒消失
@@ -104,10 +16,10 @@ function delay_disappear(){ // 子菜单延时5秒消失
 }
 function disappearSubNav(){
 	var e1 = document.getElementsByClassName('subnav')[0];
-	var e = event || arguments[0];
-	if(!isHover || e.currentTarget.id != "product")
+	var e = window.event | arguments[0];
+	if(!isHover || e.currentTarget==undefined || e.currentTarget.id != "product")
 		document.getElementsByClassName('subnav')[0].style.display="none";
-	if(e.currentTarget.id == "product") isHover = false;
+	if(e.currentTarget==undefined || e.currentTarget.id == "product") isHover = false;
 }
 function bind(){
 	var nav = document.getElementById('product');
@@ -138,5 +50,74 @@ window.onscroll = function() {
 	else {
 		header.style.top = 26-t+"px";
 	}
-	console.log(header.style.top);
 }
+
+/* v1: 幻灯片轮播+文字标题背景颜色动画 */
+function sliderChange(){
+	var index = 0; // 当前的幻灯片编号
+	var isIE = false;
+	if(navigator.userAgent.toLowerCase().indexOf('trident') > -1) isIE = true;
+	
+	function start(){
+		if(isIE){
+			var sliderName = document.getElementsByClassName('sliderName');
+			sliderName[index].style.backgroundSize = "100%"; 
+		}
+		setInterval(function(){
+			indexChange(true);
+			animation(-300); 
+		}, 5000);
+	}
+	function indexChange(add){ // 切换幻灯片
+		if(add){
+			if(index==3) index=0;
+			else index=index+1;
+		}
+		else {
+			if(index==0) index=3;
+			else index=index-1;
+		}
+		sliderNameActive();
+		textChange();
+	}
+	function sliderNameActive(){
+		var sliderName = document.getElementsByClassName('sliderName');
+		for(let i=0; i<index; i++){ // 将之前展示过的幻灯片都标记为actived
+			sliderName[i].className = "sliderName actived";
+		}
+		if(index == 0){ // 当幻灯片从头开始就要清空之前的actived记录
+			for(let i=0; i<4; i++){ // 将之前展示过的幻灯片都标记为actived
+				sliderName[i].className = "sliderName";
+			}
+		}
+		sliderName[index].className = "sliderName active";
+		
+		if(isIE) { // for IE
+			for(let i=0; i<4; i++){ // 将所有幻灯片都置为空
+				sliderName[i].style.backgroundSize = "0%"; 
+			}
+			sliderName[index].style.backgroundSize = "100%"; 
+		}
+	}
+	function animation(offset){ // 幻灯片图片切换
+		var wrapper = document.getElementById("wrapper");
+		var left = parseInt(wrapper.offsetLeft)+offset;
+		if(left<-900) left = 0;
+		else if(left>0) left = -900;
+		wrapper.style.left = left+"px";
+	}
+	function textChange(){
+		var sliderContent = document.getElementById('sliderContent');
+		var text = sliderContent.childNodes;
+		var count = 0;
+		for(let i=0; i<text.length; i++){
+			if(text[i].tagName){				
+				if(count==index) text[i].style.display = "block";
+				else text[i].style.display = "none";
+				count++;
+			}
+		}
+	}
+	
+	start();
+};
