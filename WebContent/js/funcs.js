@@ -1,8 +1,27 @@
 window.onload = function(){
 	bind(); // 导航栏事件绑定
-	sliderChange(); // 开始运行幻灯片
-}  
-
+}
+function addLoadEvent(func){ // onload事件多重绑定冲突解决
+	var oldLoad = window.onload;
+	if(typeof window.onload != 'function'){
+		window.onload = func;
+	}else{
+		window.onload = new function(){
+			oldLoad();
+			func();
+		};
+	}
+	
+}
+/* 打开新窗口 */
+function openWin(url){
+	var iHeight = 400;
+	var iWidth = 400;
+	var iTop = (window.screen.availHeight-30-iHeight) / 2; 
+	var iLeft = (window.screen.availWidth-30-iWidth) / 2;
+	window.open (url, 'newwindow', 'height='+iHeight+',width='+iWidth+', top='+iTop+', left='+iLeft +
+		', toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no'); 
+}
 /* v1: 导航栏hover时间绑定 */
 var isHover = false;
 function appearSubNav(){

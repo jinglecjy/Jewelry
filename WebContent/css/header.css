@@ -1,5 +1,52 @@
 @CHARSET "UTF-8";
-/* header.css */
+body {
+    margin: 0px;
+    padding: 0px;  
+    font-size: 0.8em;
+    font-family: "Times New Roman",Georgia,Serif;
+    background-color: #F8F8F8;
+}  
+hr {
+	color: #D65A6F;
+	height: 3px;
+}
+#top {
+	width: 100%;
+    min-width: 1100px;
+    height: 2em;
+    margin: 0 auto;
+	position: relative;
+	top: 0px;
+	background-color: #D65A6F;
+}
+#signupLogin {
+	width: 1100px;
+	top: 0px;  
+	margin: 0 auto;
+}
+#signupLogin>ul {
+	float: right;
+	margin-top: 0.5em;
+}
+#signupLogin>ul>li{
+    font-weight: bold;
+}
+#signupLogin>ul>li:nth-child(1) span{
+    font-weight: normal;
+}
+
+#signupLogin a:link{
+    color: black;
+    text-decoration: none;
+}
+#signupLogin a:visited{
+    color: black;
+    text-decoration: none;
+}
+#signupLogin a:hover{
+    text-decoration: underline;
+}
+
 #header {
 	width: 100%;
 	min-width: 1100px;

@@ -1,67 +1,17 @@
-<%@ page language="java" import="java.util.*,java.sql.*"  contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="shortcut icon" href="images/icons.ico" type="image/x-icon" />
-<link rel="icon" href="images/icons.png" type="image/png" />
-<link rel="stylesheet" href="css/normalize.css" type="text/css" charset="utf-8">
-<link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.css" />
-<link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="css/header1.css" type="text/css" charset="utf-8">
-<link rel="stylesheet" href="css/header.css" type="text/css" charset="utf-8">
-<link rel="stylesheet" href="css/index_main.css" type="text/css" charset="utf-8">
-<link rel="stylesheet" href="css/footer.css" type="text/css" charset="utf-8">
-<script type="text/javascript" src="js/header.js"></script>
 
-<!-- v3:修改title -->
 <title>首页 | Jewelry</title> 
-<%  /* v3: 动态显示当前用户名 */
-	String cid = null;
-	if(session.getAttribute("id") != null)
-		cid = session.getAttribute("id").toString(); // 登录界面跳转后传递用户cid 
-	String notLogin = "style=\"display:block\"";
-	String Login = "style=\"display:none\"";
-	String userName = "";
-	String msg ="";
-	if(cid != null){
-		request.setCharacterEncoding("utf-8");
-		String connectString = "jdbc:mysql://172.18.187.234:3306/14353007"
-						+ "?autoReconnect=true&useUnicode=true"
-						+ "&characterEncoding=UTF-8"; 
-		try{
-		  Class.forName("com.mysql.jdbc.Driver");
-		  Connection con=DriverManager.getConnection(connectString, 
-		                 "user", "123");
-		  Statement stmt=con.createStatement();
-		  ResultSet rs=stmt.executeQuery("select cname from customer where cid="+cid+";");
-		  if(rs.next()){
-			  userName = rs.getString("cname");
-		  }
-		  if(userName != null && !userName.equals("")){ // 成功获取到用户名
-		      notLogin = "style=\"display:none\"";
-			  Login = "style=\"display:block\"";
-		  }
-		  else{
-			  userName = "";
-		  }
-		  rs.close();
-		  stmt.close();
-		  con.close();
-		}
-		catch (Exception e){
-		  msg = e.getMessage();
-		}
-	} 
-%>
 <style> 
 	#main {
 		width: 1100px;
 		/* border: solid 1px black; */
 		margin: 0 auto;
 		position: relative;
-		padding: 0px;
 		margin-top: 130px;
 	}
 	
@@ -157,7 +107,6 @@
 		margin-right: -20px;
 	}
 	div.photo {
-		width: 540px;
 		margin-right: 20px;
 	}
 
@@ -165,7 +114,7 @@
 		max-width: 540px;
 	}
 	span.photo.title {
-		display: inline-block;
+		display: block;
 		width: 100%;
 		max-width: 540px;
 		height: 40px;
@@ -190,44 +139,7 @@
 </style>
 </head>
 <body>
-	<div id="top">
-		<div id="signupLogin"> 
-			<ul>
-				<li <%=notLogin %>>
-					<span>立即注册以访问专有内容</span>&nbsp;&nbsp;&nbsp;
-					<a href="register.jsp">注册</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="login.jsp">登录</a> 
-				</li>
-				<li <%=Login %>>
-					<span><%=userName %></span> <a href="update_customer.jsp">用户中心</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div id="header">
-		<div id="container">
-			<div id="logo">
-				<a title="Jewelry" href="index.jsp"><img src="images/logo.png"></a>
-			</div>
-			<!-- end of logo -->
-			<ul id="menu">
-				<li id="home"><a href="index.jsp">首页</a></li>				
-				<li id="product" ><a href="main.jsp" >产品</a></li>							
-				<li id="order"><a href="order_list.jsp">订单</a></li>
-			</ul>
-			<!-- end of menu -->		
-		</div>
-		<!-- end of container -->
-		<div class="subnav">
-			<ul>
-				<li><a href="ring.jsp">戒指</a></li> 
-				<li><a href="earring.jsp">耳环</a></li> 
-				<li><a href="bracelent.jsp">手镯</a></li>
-				<li><a href="necklace.jsp">项链</a></li> 
-			</ul>
-		</div>
-		<!-- end of subnav -->
-	</div>
-	<!-- end of header -->
+	<%@include file="header.jsp" %>
 	<div id="main">
 		<!-- 配合幻灯片的切换而切换的标题 -->
 		<div id="sliderIndex">
@@ -283,14 +195,9 @@
 	</div>
 	<!-- end of main -->
 
-	<div style="background-color: #D65A6F; height: 3px; width: 100%;"></div>
-	<div id="footer_outer">
-		<div id="footer_inner">
-			<p>版权所有 &copy; SYSU-移动Web应用设计第100小组</p>
-			<p>移动信息工程14级：谢梓莹、蔡洁莹、陈晓琪</p>
-			<p>建议使用IE9.0及以上、Firefox、Google Chrome、360浏览器极速模式或其它兼容浏览器访问本网站</p>
-		</div>
-	</div>
-	<!-- end of footer_outer -->
+	<%@include file="footer.jsp" %>
+	<script type="text/javascript">
+		addLoadEvent(sliderChange); // 开始运行幻灯片
+	</script>
 </body>
 </html>
